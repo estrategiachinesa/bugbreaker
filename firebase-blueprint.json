@@ -1,0 +1,66 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and their Broker Breaker simulation state",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "currentStep": { "type": "number" },
+        "broker": { "type": "string" },
+        "userId": { "type": "string" },
+        "isUserIdVerified": { "type": "boolean" },
+        "depositStatus": { "type": "string" },
+        "balance": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["uid", "email"]
+    },
+    "ApprovedId": {
+      "title": "ApprovedId",
+      "description": "An approved user ID allowed to bypass validation or perform the exploit simulation",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "active": { "type": "boolean" },
+        "broker": { "type": "string", "enum": ["IQ Option", "Exnova"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "active", "broker"]
+    },
+    "SystemSettings": {
+      "title": "SystemSettings",
+      "description": "System-wide settings such as Telegram bot token, chat IDs, links, and messages",
+      "type": "object",
+      "properties": {
+        "bot_token": { "type": "string" },
+        "admin_chat_id": { "type": "string" },
+        "bot_link": { "type": "string" },
+        "iq_link": { "type": "string" },
+        "exnova_link": { "type": "string" },
+        "welcome_msg": { "type": "string" },
+        "approved_msg": { "type": "string" },
+        "rejected_msg": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "User",
+      "description": "User profile data and simulation state persistence"
+    },
+    "approved_ids/{approvedId}": {
+      "schema": "ApprovedId",
+      "description": "Collection of authorized/approved user IDs for brokers"
+    },
+    "system_settings/{settingId}": {
+      "schema": "SystemSettings",
+      "description": "System configuration document for Telegram bot settings and links"
+    }
+  }
+}

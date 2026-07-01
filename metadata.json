@@ -1,0 +1,6 @@
+{
+  "name": "Broker Breaker",
+  "description": "Simulador avançado de trading e exploração de brechas de saldo.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
